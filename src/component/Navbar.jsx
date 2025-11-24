@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const Navbar = () => {
   return (
@@ -29,20 +30,20 @@ const Navbar = () => {
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>Home</li>
-            <li>Services</li>
-            <li>My Profile</li>
+            <Link to={'/'}>Home</Link>
+            <Link to={'/services'}>Services</Link>
+            <Link to={'/profile'}>My Profile</Link>
           </ul>
         </div>
 
-        <a className="font-semibold text-2xl">🐈 Pet Care</a>
+        <a className="font-semibold text-2xl">🐈 WarmPaws</a>
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-5 font-semibold text-[16px]">
-          <li className=" cursor-pointer">Home</li>
-          <li className=" cursor-pointer">Services</li>
-          <li className=" cursor-pointer">My Profile</li>
+        <ul className="menu menu-horizontal px-1 gap-8 font-semibold text-[16px]">
+            <Link className="cursor-pointer hover:underline" to={'/'}>Home</Link>
+            <Link className="cursor-pointer hover:underline" to={'/services'}>Services</Link>
+            <Link className="cursor-pointer hover:underline" to={'/profile'}>My Profile</Link>
         </ul>
       </div>
 
