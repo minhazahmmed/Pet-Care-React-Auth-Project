@@ -19,14 +19,14 @@ const ExpertVets = () => {
 
   return (
     <div className="py-10">
-      <h2 className="text-3xl font-bold text-center mb-6">Meet Our Expert Vets</h2>
+      <h2 className="text-[26px] md:text-3xl font-bold text-center mb-6">Meet Our Expert Vets</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
         {vets.map((vet) => (
           <div
             key={vet.id}
-            className="bg-white shadow-md rounded-xl p-5 hover:shadow-xl transition text-center cursor-pointer"
+            className="bg-white shadow-md rounded-xl p-5  hover:shadow-xl transition text-center cursor-pointer  w-[350px] md:w-full mx-auto"
           >
             <img
               src={vet.image}

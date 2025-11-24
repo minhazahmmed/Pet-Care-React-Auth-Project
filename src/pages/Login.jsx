@@ -1,0 +1,73 @@
+import React from "react";
+import { Link } from "react-router";
+
+
+const Login = () => {
+  return (
+    <div className="hero min-h-screen  px-4 my-10">
+      <div className="p-6 md:p-10 bg-white/40 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/40 w-full max-w-md">
+        <h1
+          className="text-4xl font-extrabold mb-6 
+                    bg-linear-to-r from-purple-600 to-pink-500 
+                    text-transparent bg-clip-text text-center"
+        >
+          Login Now
+        </h1>
+
+        <div className="card bg-white/60 backdrop-blur-2xl w-full shadow-xl rounded-2xl border border-white/40">
+          <div className="card-body space-y-3">
+            <fieldset className="fieldset">
+              <label className="label text-[15px] font-semibold text-gray-700">
+                Email
+              </label>
+              <input
+                type="email"
+                className="input input-bordered bg-white/70 border-purple-200 
+                                focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
+                placeholder="Your Email"
+              />
+
+              <label className="label text-[15px] font-semibold text-gray-700 mt-3">
+                Password
+              </label>
+              <input
+                type="password"
+                className="input input-bordered bg-white/70 border-purple-200 
+                                focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
+                placeholder="Enter Password"
+              />
+
+              <div className="mt-2 text-right">
+                <a className="link link-hover text-purple-600 text-sm">
+                  Forgot password?
+                </a>
+              </div>
+
+              <button
+                className="btn w-full mt-5 
+                                bg-linear-to-r from-purple-600 to-pink-500 text-white 
+                                rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] 
+                                transition-all duration-300"
+              >
+                Login
+              </button>
+
+              {/* Register link */}
+              <p className="text-center text-sm mt-4">
+                Don't have an account?
+                <Link
+                  to="/register"
+                  className="text-purple-600 font-semibold hover:underline ml-1"
+                >
+                  Register
+                </Link>
+              </p>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

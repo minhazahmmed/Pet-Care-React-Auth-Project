@@ -12,7 +12,7 @@ const WinterCareTips = () => {
 
   return (
     <div className="py-10">
-      <h2 className="text-3xl font-bold text-center mb-6">
+      <h2 className="text-[26px] md:text-3xl font-bold text-center mb-6">
         Winter Care Tips for Pets
       </h2>
 
@@ -20,7 +20,7 @@ const WinterCareTips = () => {
         {tips.map((tip) => (
           <div
             key={tip.id}
-            className="bg-white shadow-md rounded-xl p-5 text-center hover:shadow-lg transition  cursor-pointer"
+            className="bg-white shadow-md rounded-xl p-5 text-center hover:shadow-lg transition  cursor-pointer w-[350px] md:w-full mx-auto"
           >
             <div className="text-5xl mb-3">{tip.icon}</div>
             <h3 className="text-xl font-semibold">{tip.title}</h3>

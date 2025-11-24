@@ -1,55 +1,83 @@
 import React from "react";
+import { FaPaw } from "react-icons/fa";
 import { Link } from "react-router";
 
 const Navbar = () => {
   return (
     <div className=" bg-base-100 shadow-sm ">
-
       <div className="navbar max-w-[1300px] mx-auto">
-
         <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {" "}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />{" "}
+              </svg>
+            </div>
+            <ul
+              tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
-            </svg>
+              <li>
+                {" "}
+                <Link to={"/"}>Home</Link>{" "}
+              </li>
+              <li>
+                {" "}
+                <Link to={"/services"}>Services</Link>{" "}
+              </li>
+              <li>
+                {" "}
+                <Link to={"/profile"}>My Profile</Link>{" "}
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <Link to={'/'}>Home</Link>
-            <Link to={'/services'}>Services</Link>
-            <Link to={'/profile'}>My Profile</Link>
+
+         <Link 
+  to={"/"} 
+  className="font-semibold text-xl md:text-2xl text-purple-600 flex items-center gap-1"
+>
+  <FaPaw className="text-xl md:text-2xl" />
+  WarmPaws
+</Link>
+
+        </div>
+
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 gap-5 font-semibold text-[16px]">
+           <li> <Link className="cursor-pointer" to={"/"}>
+              Home
+            </Link></li>
+           <li> <Link className="cursor-pointer" to={"/services"}>
+              Services
+            </Link></li>
+            <li><Link className="cursor-pointer" to={"/profile"}>
+              My Profile
+            </Link></li>
           </ul>
         </div>
 
-        <a className="font-semibold text-2xl">🐈 WarmPaws</a>
-      </div>
+<div className="navbar-end">
+  <Link 
+    to={'/login'} 
+    className="btn bg-linear-to-r from-purple-600 to-pink-400 text-white font-bold hover:scale-105 transform transition duration-300 shadow-sm px-5 md:px-7 rounded-lg "
+  >
+    Log in
+  </Link>
+</div>
 
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-8 font-semibold text-[16px]">
-            <Link className="cursor-pointer hover:underline" to={'/'}>Home</Link>
-            <Link className="cursor-pointer hover:underline" to={'/services'}>Services</Link>
-            <Link className="cursor-pointer hover:underline" to={'/profile'}>My Profile</Link>
-        </ul>
-      </div>
 
-      <div className="navbar-end">
-        <a className="btn">Log in</a>
-      </div>
       </div>
     </div>
   );

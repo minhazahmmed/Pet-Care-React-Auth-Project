@@ -5,8 +5,11 @@ import './index.css'
 import router from './router/Routes.jsx'
 import { RouterProvider } from 'react-router'
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
      <RouterProvider router={router} />,
   </StrictMode>,
+
+
 )
