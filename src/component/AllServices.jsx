@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+
+import useServices from "../hooks/useservices";
 
 const AllServices = () => {
-  const [services, setServices] = useState([]);
+ const { services, loading } = useServices();
 
-  useEffect(() => {
-    fetch("/services.json")
-      .then((res) => res.json())
-      .then((data) => setServices(data))
-      .catch((err) => console.log(err));
-  }, []);
+  if (loading)
+    return (
+      <div className="min-h-[300px] flex justify-center items-center">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
+
   return (
     <div className=" my-10 max-w-[1200px] mx-auto">
       <h1 className="text-3xl font-bold my-4 text-center">All Services</h1>

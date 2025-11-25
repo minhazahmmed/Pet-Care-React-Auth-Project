@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
 
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
+  const { loginWithEmailPassword, setUser, user } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    loginWithEmailPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  console.log(user);
+
   return (
     <div className="hero min-h-screen  px-4 my-10">
       <div className="p-6 md:p-10 bg-white/40 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/40 w-full max-w-md">
@@ -16,12 +36,13 @@ const Login = () => {
 
         <div className="card bg-white/60 backdrop-blur-2xl w-full shadow-xl rounded-2xl border border-white/40">
           <div className="card-body space-y-3">
-            <fieldset className="fieldset">
+            <form onSubmit={handleSubmit} className="fieldset">
               <label className="label text-[15px] font-semibold text-gray-700">
                 Email
               </label>
               <input
                 type="email"
+                name="email"
                 className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
                 placeholder="Your Email"
@@ -32,6 +53,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
                 placeholder="Enter Password"
@@ -62,7 +84,7 @@ const Login = () => {
                   Register
                 </Link>
               </p>
-            </fieldset>
+            </form>
           </div>
         </div>
       </div>
