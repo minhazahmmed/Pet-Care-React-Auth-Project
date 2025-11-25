@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router";
 
 import { AuthContext } from "../Provider/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-  const { loginWithEmailPassword, setUser, user } = useContext(AuthContext);
+  const { loginWithEmailPassword, setUser, user , googleSignin} = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +23,18 @@ const Login = () => {
   };
 
   console.log(user);
+
+  const handleGoogleSignin = ()=> {
+    googleSignin()
+    .then((result) => {
+   
+    const user = result.user;
+    setUser(user)
+  }).catch((error) => {
+    console.log(error);
+    
+  });
+  }
 
   return (
     <div className="hero min-h-screen  px-4 my-10">
@@ -73,6 +86,12 @@ const Login = () => {
               >
                 Login
               </button>
+
+              <div className="divider text-[14px] text-gray-500">OR</div>
+
+              <button onClick={handleGoogleSignin} className="btn   rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] 
+                                transition-all duration-300"><FcGoogle className="text-[20px]"/> Sign in with Google</button>
+
 
               {/* Register link */}
               <p className="text-center text-sm mt-4">
