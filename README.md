@@ -1,16 +1,52 @@
-# React + Vite
+# WarmPaws – Pet Care & Adoption Platform
+## [Click Here to Visit the Live Site](https://your-live-link.com)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Purpose of the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+WarmPaws is a pet care and adoption platform built with React and Firebase Authentication.
+The goal of this project is to practice:
 
-## React Compiler
+* Authentication handling
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Protected routes
 
-## Expanding the ESLint configuration
+* Component-based structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Responsive UI using Tailwind CSS
+
+## Key Features
+
+* User registration with name, email, and password
+
+* Login system using Firebase Authentication
+
+* Profile update (name & photo)
+
+* Protected routes with Context API
+
+* Pet service browsing from JSON data
+
+* Reusable components
+
+* Fully responsive UI with Tailwind CSS
+
+## NPM Packages Used
+
+* react
+
+* react-router-dom
+
+* firebase
+
+* tailwindcss
+
+* daisyui
+
+---
+
+## Developed by : Minhaz Ahmmed  
+### GitHub: https://github.com/minhazahmmed 
+
+### LinkedIn: https://linkedin.com/in/minhaz-ahmmed
+
