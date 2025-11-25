@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaPaw } from "react-icons/fa";
 import { Link } from "react-router";
+import { AuthContext } from "../Provider/AuthProvider";
+import { signOut } from "firebase/auth";
+import auth from "../firebase/firebase.config";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+
+  const handleSignout = () => {
+    signOut(auth);
+  };
   return (
     <div className=" bg-base-100 shadow-sm ">
       <div className="navbar max-w-[1300px] mx-auto">
@@ -44,40 +52,57 @@ const Navbar = () => {
             </ul>
           </div>
 
-         <Link 
-  to={"/"} 
-  className="font-semibold text-xl md:text-2xl text-purple-600 flex items-center gap-1"
->
-  <FaPaw className="text-xl md:text-2xl" />
-  WarmPaws
-</Link>
-
+          <Link
+            to={"/"}
+            className="font-semibold text-xl md:text-2xl text-purple-600 flex items-center gap-1"
+          >
+            <FaPaw className="text-xl md:text-2xl" />
+            WarmPaws
+          </Link>
         </div>
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-5 font-semibold text-[16px]">
-           <li> <Link className="cursor-pointer" to={"/"}>
-              Home
-            </Link></li>
-           <li> <Link className="cursor-pointer" to={"/services"}>
-              Services
-            </Link></li>
-            <li><Link className="cursor-pointer" to={"/profile"}>
-              My Profile
-            </Link></li>
+            <li>
+              {" "}
+              <Link className="cursor-pointer" to={"/"}>
+                Home
+              </Link>
+            </li>
+            <li>
+              {" "}
+              <Link className="cursor-pointer" to={"/services"}>
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link className="cursor-pointer" to={"/profile"}>
+                My Profile
+              </Link>
+            </li>
           </ul>
         </div>
 
-<div className="navbar-end">
-  <Link 
-    to={'/login'} 
-    className="btn bg-linear-to-r from-purple-600 to-pink-400 text-white font-bold hover:scale-105 transform transition duration-300 shadow-sm px-5 md:px-7 rounded-lg "
-  >
-    Log in
-  </Link>
-</div>
+        <div className="navbar-end">
+          {user && (
+            <button
+              onClick={handleSignout}
+              to={"/login"}
+              className="btn bg-linear-to-r from-purple-600 to-pink-400 text-white font-bold hover:scale-105 transform transition duration-300 shadow-sm px-5 md:px-7 rounded-lg "
+            >
+              Logout
+            </button>
+          )}
 
-
+          {!user && (
+            <Link
+              to={"/login"}
+              className="btn bg-linear-to-r from-purple-600 to-pink-400 text-white font-bold hover:scale-105 transform transition duration-300 shadow-sm px-5 md:px-7 rounded-lg "
+            >
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

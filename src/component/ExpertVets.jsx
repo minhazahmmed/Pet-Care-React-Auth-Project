@@ -12,7 +12,7 @@ const ExpertVets = () => {
         .catch(err => console.log(err))
 
     }, [])
-    console.log(vets)
+   
 
 
 
