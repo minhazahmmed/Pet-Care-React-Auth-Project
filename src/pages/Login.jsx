@@ -3,9 +3,11 @@ import { Link } from "react-router";
 
 import { AuthContext } from "../Provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
-  const { loginWithEmailPassword, setUser, user , googleSignin} = useContext(AuthContext);
+  const { loginWithEmailPassword, setUser, user, googleSignin } =
+    useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,25 +18,36 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setUser(user);
+        toast.success("Login successful", {
+          position: "bottom-right",
+        });
       })
       .catch((error) => {
+        toast.error("Invalid credential", { 
+            position: "bottom-right" 
+        });
         console.log(error);
       });
   };
 
   console.log(user);
 
-  const handleGoogleSignin = ()=> {
+  const handleGoogleSignin = () => {
     googleSignin()
-    .then((result) => {
-   
-    const user = result.user;
-    setUser(user)
-  }).catch((error) => {
-    console.log(error);
-    
-  });
-  }
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        toast.success("Login successful", {
+          position: "bottom-right",
+        });
+      })
+      .catch((error) => {
+        toast.error(error.message, { 
+            position: "bottom-right" 
+        });
+        console.log(error);
+      });
+  };
 
   return (
     <div className="hero min-h-screen  px-4 my-10">
@@ -59,6 +72,7 @@ const Login = () => {
                 className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
                 placeholder="Your Email"
+                required
               />
 
               <label className="label text-[15px] font-semibold text-gray-700 mt-3">
@@ -70,6 +84,7 @@ const Login = () => {
                 className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
                 placeholder="Enter Password"
+                required
               />
 
               <div className="mt-2 text-right">
@@ -79,6 +94,7 @@ const Login = () => {
               </div>
 
               <button
+                type="submit"
                 className="btn w-full mt-5 
                                 bg-linear-to-r from-purple-600 to-pink-500 text-white 
                                 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] 
@@ -89,14 +105,20 @@ const Login = () => {
 
               <div className="divider text-[14px] text-gray-500">OR</div>
 
-              <button onClick={handleGoogleSignin} className="btn   rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] 
-                                transition-all duration-300"><FcGoogle className="text-[20px]"/> Sign in with Google</button>
-
+              <button
+               type="button" 
+                onClick={handleGoogleSignin}
+                className="btn   rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] 
+                                transition-all duration-300"
+              >
+                <FcGoogle className="text-[20px]" /> Sign in with Google
+              </button>
 
               {/* Register link */}
               <p className="text-center text-sm mt-4">
                 Don't have an account?
                 <Link
+                
                   to="/register"
                   className="text-purple-600 font-semibold hover:underline ml-1"
                 >
@@ -107,6 +129,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

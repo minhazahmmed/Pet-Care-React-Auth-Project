@@ -29,16 +29,18 @@ const Profile = () => {
         };
         setUser(updatedUser);
         setShowUpdateForm(false)
+        toast.success("Profile updated successfully", {
+          position: "bottom-right",
+        });
       })
       .catch((error) => {
-        console.log(error);
+         toast.error("Profile update failed");
+              console.log(error)
       });
   };
 
 
-  const notify = ()=> {
-    toast.success("Profile updated successfully")
-  }
+
   
 
   return (
@@ -89,7 +91,7 @@ const Profile = () => {
               />
             </div>
 
-          <button onClick={notify}
+          <button 
   type="submit"
   disabled={profileName.trim().length === 0}
   className={`w-full text-white py-2 rounded-lg shadow transition 

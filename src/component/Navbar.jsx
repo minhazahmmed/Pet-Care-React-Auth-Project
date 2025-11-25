@@ -4,13 +4,25 @@ import { Link } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { signOut } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import { toast, ToastContainer } from "react-toastify";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
 
   const handleSignout = () => {
-    signOut(auth);
-  };
+  signOut(auth)
+    .then(() => {
+      toast.success("Logout successful",{
+        position: "bottom-right"
+      });
+    })
+    .catch((error) => {
+       
+      toast.error("Logout failed");
+       console.log(error)
+    });
+};
+
   return (
     <div className=" bg-base-100 shadow-sm ">
       <div className="navbar max-w-[1300px] mx-auto">
@@ -86,8 +98,7 @@ const Navbar = () => {
         <div className="navbar-end">
           {user && (
             <button
-              onClick={handleSignout}
-              to={"/login"}
+           onClick={handleSignout}
               className="btn bg-linear-to-r from-purple-600 to-pink-400 text-white font-bold hover:scale-105 transform transition duration-300 shadow-sm px-5 md:px-7 rounded-lg "
             >
               Logout
@@ -95,15 +106,13 @@ const Navbar = () => {
           )}
 
           {!user && (
-            <Link
-              to={"/login"}
-              className="btn bg-linear-to-r from-purple-600 to-pink-400 text-white font-bold hover:scale-105 transform transition duration-300 shadow-sm px-5 md:px-7 rounded-lg "
-            >
+            <Link to={'/login'} className="btn bg-linear-to-r from-purple-600 to-pink-400 text-white font-bold hover:scale-105 transform transition duration-300 shadow-sm px-5 md:px-7 rounded-lg ">
               Login
             </Link>
           )}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

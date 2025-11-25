@@ -4,9 +4,11 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { FcGoogle } from "react-icons/fc";
+import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
-  const { registerWithEmailPassword, user, setUser, googleSignin } = useContext(AuthContext);
+  const { registerWithEmailPassword, user, setUser, googleSignin } =
+    useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,29 +27,39 @@ const Register = () => {
         })
           .then(() => {
             setUser(user);
+            toast.success("Registration successful", {
+              position: "bottom-right",
+            });
           })
           .catch((error) => {
             console.log(error);
+            toast.error("Profile update failed", {
+              position: "bottom-right",
+            });
           });
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error.message, {
+          position: "bottom-right",
+        });
       });
   };
 
   console.log(user);
 
-  const handleGoogleSignup = ()=> {
+  const handleGoogleSignup = () => {
     googleSignin()
-    .then((result) => {
-   
-    const user = result.user;
-    setUser(user)
-  }).catch((error) => {
-    console.log(error);
-    
-  });
-  }
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        toast.success("Registration successful", { position: "bottom-right" });
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message, { position: "bottom-right" });
+      });
+  };
 
   return (
     <div className="hero min-h-screen px-4 my-12">
@@ -72,6 +84,7 @@ const Register = () => {
                 className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
                 placeholder="Your Name"
+                required
               />
 
               <label className="label text-[15px] font-semibold text-gray-700 mt-3">
@@ -83,6 +96,7 @@ const Register = () => {
                 className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
                 placeholder="Your Email"
+                required
               />
 
               <label className="label text-[15px] font-semibold text-gray-700 mt-3">
@@ -105,9 +119,11 @@ const Register = () => {
                 className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
                 placeholder="Create Password"
+                required
               />
 
               <button
+                type="submit"
                 className="btn w-full mt-5 
                                 bg-linear-to-r from-pink-500 to-purple-600 text-white 
                                 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] 
@@ -118,7 +134,9 @@ const Register = () => {
 
               <div className="divider text-[14px] text-gray-500">OR</div>
 
-              <button onClick={handleGoogleSignup}
+              <button
+                type="button"
+                onClick={handleGoogleSignup}
                 className="btn   rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] 
                                               transition-all duration-300"
               >
@@ -139,6 +157,8 @@ const Register = () => {
           </div>
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };
