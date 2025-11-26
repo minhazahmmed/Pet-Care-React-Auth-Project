@@ -71,7 +71,7 @@ const Register = () => {
       });
   };
 
-  console.log(user);
+//   console.log(user);
 
   const handleGoogleSignup = () => {
     googleSignin()

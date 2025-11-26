@@ -17,7 +17,7 @@ const ServiceDetails = () => {
     );
 
   const findResult = services?.find((service) => service.serviceId == id);
-  console.log(findResult);
+//   console.log(findResult);
 
   const handleBook = (e) => {
     e.preventDefault();

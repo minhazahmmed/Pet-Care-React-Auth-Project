@@ -12,7 +12,7 @@ const Login = () => {
   const { loginWithEmailPassword, setUser, user, googleSignin } =
     useContext(AuthContext);
   const location = useLocation();
-  console.log(location);
+//    console.log(location);
 
   const [email, setEmail] = useState("");
 
@@ -40,7 +40,7 @@ const Login = () => {
       });
   };
 
-  console.log(user);
+//   console.log(user);
 
   const handleGoogleSignin = () => {
     googleSignin()
