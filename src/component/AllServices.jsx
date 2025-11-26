@@ -1,4 +1,5 @@
 
+import { Link } from "react-router";
 import useServices from "../hooks/useservices";
 
 const AllServices = () => {
@@ -44,9 +45,13 @@ const AllServices = () => {
                 </div>
 
                 <div className="flex mb-5 mt-5">
-                  <button className="btn btn-outline w-full rounded-2xl btn-primary text-[15px]">
+                 
+                <Link to={`/details/${service?.serviceId}`}>
+                 <button className="btn btn-outline w-full rounded-2xl btn-primary text-[15px]">
                     View Details
                   </button>
+                  </Link>
+
                 </div>
               </div>
             </div>

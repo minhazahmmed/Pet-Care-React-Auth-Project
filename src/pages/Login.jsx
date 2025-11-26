@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
-import { Link } from "react-router";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 
 import { AuthContext } from "../Provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { toast, ToastContainer } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const { loginWithEmailPassword, setUser, user, googleSignin } =
     useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,13 +25,14 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setUser(user);
+        navigate(location.state);
         toast.success("Login successful", {
           position: "bottom-right",
         });
       })
       .catch((error) => {
-        toast.error("Invalid credential", { 
-            position: "bottom-right" 
+        toast.error("Invalid credential", {
+          position: "bottom-right",
         });
         console.log(error);
       });
@@ -42,8 +50,8 @@ const Login = () => {
         });
       })
       .catch((error) => {
-        toast.error(error.message, { 
-            position: "bottom-right" 
+        toast.error("Login Failed", {
+          position: "bottom-right",
         });
         console.log(error);
       });
@@ -78,14 +86,23 @@ const Login = () => {
               <label className="label text-[15px] font-semibold text-gray-700 mt-3">
                 Password
               </label>
-              <input
-                type="password"
-                name="password"
-                className="input input-bordered bg-white/70 border-purple-200 
+
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
-                placeholder="Enter Password"
-                required
-              />
+                  placeholder="Enter Password"
+                  required
+                />
+                <span
+                  className="absolute right-3 top-3 cursor-pointer text-gray-600 text-xl"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
 
               <div className="mt-2 text-right">
                 <a className="link link-hover text-purple-600 text-sm">
@@ -106,7 +123,7 @@ const Login = () => {
               <div className="divider text-[14px] text-gray-500">OR</div>
 
               <button
-               type="button" 
+                type="button"
                 onClick={handleGoogleSignin}
                 className="btn   rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] 
                                 transition-all duration-300"
@@ -118,7 +135,6 @@ const Login = () => {
               <p className="text-center text-sm mt-4">
                 Don't have an account?
                 <Link
-                
                   to="/register"
                   className="text-purple-600 font-semibold hover:underline ml-1"
                 >

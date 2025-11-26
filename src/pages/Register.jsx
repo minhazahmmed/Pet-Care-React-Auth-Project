@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { FcGoogle } from "react-icons/fc";
 import { toast, ToastContainer } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
+    const [showPassword, setShowPassword] = useState(false);
+
   const { registerWithEmailPassword, user, setUser, googleSignin } =
     useContext(AuthContext);
 
@@ -40,7 +43,7 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.message, {
+        toast.error("Registration failed", {
           position: "bottom-right",
         });
       });
@@ -57,7 +60,7 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.message, { position: "bottom-right" });
+        toast.error("Registration failed", { position: "bottom-right" });
       });
   };
 
@@ -113,14 +116,23 @@ const Register = () => {
               <label className="label text-[15px] font-semibold text-gray-700 mt-3">
                 Password
               </label>
-              <input
+          <div className="relative"> 
+                <input
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
                 placeholder="Create Password"
                 required
               />
+
+              <span
+                  className="absolute right-3 top-3 cursor-pointer text-gray-600 text-xl"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+          </div>
 
               <button
                 type="submit"

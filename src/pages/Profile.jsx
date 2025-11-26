@@ -4,13 +4,13 @@ import { updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { toast, ToastContainer } from "react-toastify";
 
+
 const Profile = () => {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
 
-
   const { user, setUser } = useContext(AuthContext);
 
-    const [profileName, setProfileName] = useState(user?.displayName || "");
+  const [profileName, setProfileName] = useState(user?.displayName || "");
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -28,20 +28,16 @@ const Profile = () => {
           photoURL: photoURL,
         };
         setUser(updatedUser);
-        setShowUpdateForm(false)
+        setShowUpdateForm(false);
         toast.success("Profile updated successfully", {
           position: "bottom-right",
         });
       })
       .catch((error) => {
-         toast.error("Profile update failed");
-              console.log(error)
+        toast.error("Profile update failed");
+        console.log(error);
       });
   };
-
-
-
-  
 
   return (
     <div className="min-h-screen bg-linear-to-br from-purple-50 via-pink-50 to-violet-50 flex items-center justify-center p-4">
@@ -50,9 +46,14 @@ const Profile = () => {
 
         <div className="flex flex-col items-center">
           <img
-            src={user?.photoURL}
+            src={
+              user?.photoURL
+                ? user.photoURL
+                : "https://i.ibb.co.com/LXv7qnW8/blank-profile-picture-973460-1280.webp"
+            }
             className="w-32 h-32 rounded-full shadow-lg mb-4"
           />
+
           <h2 className="text-2xl font-bold mb-1">{user?.displayName}</h2>
           <p className="text-gray-600 mb-4">{user?.email}</p>
 
@@ -79,8 +80,6 @@ const Profile = () => {
               />
             </div>
 
-     
-
             <div>
               <label className="block text-gray-700">Profile Image URL</label>
               <input
@@ -91,22 +90,22 @@ const Profile = () => {
               />
             </div>
 
-          <button 
-  type="submit"
-  disabled={profileName.trim().length === 0}
-  className={`w-full text-white py-2 rounded-lg shadow transition 
-    ${profileName.trim().length === 0
-      ? "bg-gray-400 cursor-not-allowed"
-      : "bg-green-600 hover:bg-green-700"
+            <button
+              type="submit"
+              disabled={profileName.trim().length === 0}
+              className={`w-full text-white py-2 rounded-lg shadow transition 
+    ${
+      profileName.trim().length === 0
+        ? "bg-gray-400 cursor-not-allowed"
+        : "bg-green-600 hover:bg-green-700"
     }`}
->
-  Save Changes
-</button>
-
+            >
+              Save Changes
+            </button>
           </form>
         )}
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
