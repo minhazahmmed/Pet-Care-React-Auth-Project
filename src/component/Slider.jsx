@@ -1,12 +1,12 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
+// Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 
-// import required modules
-import { Navigation } from "swiper/modules";
+// Modules
+import { Navigation, Autoplay } from "swiper/modules";
 
 import image1 from "../assets/image1.webp";
 import image2 from "../assets/image2.webp";
@@ -18,7 +18,16 @@ import image6 from "../assets/image6.webp";
 const Slider = () => {
   return (
     <div>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+      <Swiper
+        navigation={true}
+        modules={[Navigation, Autoplay]}
+        autoplay={{
+          delay: 2000, // 2 seconds
+          disableOnInteraction: false,
+           pauseOnMouseEnter: true, 
+        }}
+        className="mySwiper"
+      >
         <SwiperSlide>
           <img className="w-full h-[450px] object-cover" src={image1} alt="" />
         </SwiperSlide>
