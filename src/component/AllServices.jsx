@@ -1,9 +1,9 @@
-
 import { Link } from "react-router";
 import useServices from "../hooks/useservices";
+import { motion } from "motion/react";
 
 const AllServices = () => {
- const { services, loading } = useServices();
+  const { services, loading } = useServices();
 
   if (loading)
     return (
@@ -19,7 +19,9 @@ const AllServices = () => {
       <div className="mt-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {services.map((service) => (
-            <div
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1, transition: { duration: 1 } }}
               key={service?.serviceId}
               className="card bg-base-100  shadow-sm px-5 space-y-3"
             >
@@ -45,16 +47,14 @@ const AllServices = () => {
                 </div>
 
                 <div className="flex mb-5 mt-5">
-                 
-                <Link to={`/details/${service?.serviceId}`}>
-                 <button className="btn btn-outline w-full rounded-2xl btn-primary text-[15px]">
-                    View Details
-                  </button>
+                  <Link to={`/details/${service?.serviceId}`}>
+                    <button className="btn btn-outline w-full rounded-2xl btn-primary text-[15px]">
+                      View Details
+                    </button>
                   </Link>
-
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -14,6 +14,8 @@ const Login = () => {
   const location = useLocation();
   console.log(location);
 
+  const [email, setEmail] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -25,7 +27,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setUser(user);
-        navigate(location.state);
+        navigate(location.state ? location.state : "/");
         toast.success("Login successful", {
           position: "bottom-right",
         });
@@ -57,6 +59,10 @@ const Login = () => {
       });
   };
 
+  const handleForget = () => {
+    navigate(`/forget/${email}`);
+  };
+
   return (
     <div className="hero min-h-screen  px-4 my-9 md:my-12">
       <div className="p-6 md:p-10 bg-white/40 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/40 w-full max-w-md">
@@ -75,6 +81,7 @@ const Login = () => {
                 Email
               </label>
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 name="email"
                 className="input input-bordered bg-white/70 border-purple-200 
@@ -105,9 +112,12 @@ const Login = () => {
               </div>
 
               <div className="mt-2 text-right">
-                <a className="link link-hover text-purple-600 text-sm">
+                <button
+                  onClick={handleForget}
+                  className="link link-hover text-purple-600 text-sm"
+                >
                   Forgot password?
-                </a>
+                </button>
               </div>
 
               <button

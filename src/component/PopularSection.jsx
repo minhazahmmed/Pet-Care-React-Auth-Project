@@ -1,6 +1,7 @@
 // import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import useServices from "../hooks/useservices";
+import { motion } from "motion/react";
 
 const PopularSection = () => {
 
@@ -22,7 +23,9 @@ const PopularSection = () => {
       <div className="mt-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {services.slice(0, 6).map((service) => (
-            <div
+            <motion.div
+            initial={{ scale: 0.9 }}
+              animate={{ scale: 1, transition: { duration: 1 } }}
               key={service?.serviceId}
               className="card bg-base-100 shadow-sm px-5 space-y-3 w-[350px] md:w-full mx-auto"
             >
@@ -57,7 +60,7 @@ const PopularSection = () => {
 
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
