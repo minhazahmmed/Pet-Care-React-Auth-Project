@@ -17,12 +17,12 @@ import image6 from "../assets/image6.webp";
 
 const Slider = () => {
   return (
-    <div>
+    <div className="relative z-0">
       <Swiper
         navigation={true}
         modules={[Navigation, Autoplay]}
         autoplay={{
-          delay: 2000, // 2 seconds
+          delay: 4000, // 4 seconds
           disableOnInteraction: false,
            pauseOnMouseEnter: true, 
         }}

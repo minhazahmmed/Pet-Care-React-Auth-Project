@@ -24,7 +24,7 @@ const Navbar = () => {
 };
 
   return (
-    <div className=" bg-base-100 shadow-sm ">
+    <div className=" bg-base-100 shadow-sm relative z-50 ">
       <div className="navbar max-w-[1300px] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -47,7 +47,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100  z-1 mt-3  w-52 p-2 shadow"
             >
               <li>
                 {" "}
