@@ -30,8 +30,9 @@ const ServiceDetails = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 bg-linear-to-br from-violet-50 via-purple-50 to-pink-50">
-      <div className="max-w-4xl mx-auto bg-white/60 backdrop-blur-xl shadow-2xl rounded-3xl p-6 md:p-10 border border-white/40">
+    <div className="min-h-screen py-7 md:py-12 px-4 ">
+
+      <div className="max-w-2xl mx-auto bg-white/60 backdrop-blur-xl shadow-xl rounded-3xl p-6 md:p-7 border border-white/40">
         {/* IMAGE */}
         <div className="w-full">
           <img
@@ -43,7 +44,7 @@ const ServiceDetails = () => {
 
         {/* TITLE */}
         <h1
-          className="text-3xl md:text-5xl font-extrabold mt-6 
+          className="text-2xl md:text-4xl font-extrabold mt-6 
           bg-linear-to-r from-purple-600 to-pink-500 
           text-transparent bg-clip-text"
         >
@@ -57,17 +58,17 @@ const ServiceDetails = () => {
 
         {/* PRICE and RATING */}
         <div className="flex justify-between">
-          <p className="text-[16px] md:text-xl font-semibold mt-4 text-purple-600 border-2 border-dotted border-purple-700 px-3 rounded-xl">
+          <p className="text-[16px] md:text-[18px] font-semibold mt-4 text-purple-600 border-2 border-dotted border-purple-700 px-3 rounded-xl">
             Price: ${findResult.price}
           </p>
 
-          <p className="text-[16px] md:text-xl font-semibold mt-4 text-purple-600 border-2 border-dotted border-purple-700 px-3 rounded-xl">
+          <p className="text-[16px] md:text-[18px] font-semibold mt-4 text-purple-600 border-2 border-dotted border-purple-700 px-3 rounded-xl">
             Rating: {findResult.rating}
           </p>
         </div>
 
         {/* DESCRIPTION */}
-        <p className="text-gray-700 mt-5 leading-relaxed text-[16px]">
+        <p className="text-gray-700 mt-5 leading-relaxed text-[15px]">
           {findResult.description}
         </p>
 

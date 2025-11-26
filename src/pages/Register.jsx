@@ -8,7 +8,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
-    const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
   const { registerWithEmailPassword, user, setUser, googleSignin } =
     useContext(AuthContext);
@@ -19,6 +20,27 @@ const Register = () => {
     const password = e.target.password.value;
     const name = e.target.name.value;
     const photourl = e.target.photoURL.value;
+
+    const uppercase = /[A-Z]/;
+    const lowercase = /[a-z]/;
+
+    setPasswordError("");
+
+    if (password.length < 6) {
+      return setPasswordError("Password must be at least 6 characters long");
+    }
+
+    if (!uppercase.test(password)) {
+      return setPasswordError(
+        "Password must contain at least one uppercase letter (A-Z)"
+      );
+    }
+
+    if (!lowercase.test(password)) {
+      return setPasswordError(
+        "Password must contain at least one lowercase letter (a-z)"
+      );
+    }
 
     registerWithEmailPassword(email, password)
       .then((userCredential) => {
@@ -43,7 +65,7 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Registration failed", {
+        toast.error(error.message, {
           position: "bottom-right",
         });
       });
@@ -60,15 +82,15 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Registration failed", { position: "bottom-right" });
+        toast.error(error.message, { position: "bottom-right" });
       });
   };
 
   return (
-    <div className="hero min-h-screen px-4 my-12">
+    <div className="hero min-h-screen px-4 my-9 md:my-12">
       <div className="p-6 md:p-10 bg-white/40 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/40 w-full max-w-md">
         <h1
-          className="text-4xl font-extrabold mb-6 
+          className="text-3xl md:text-4xl font-extrabold mb-3 md:mb-6 
                     bg-linear-to-r from-pink-500 to-purple-600 
                     text-transparent bg-clip-text text-center"
         >
@@ -116,23 +138,27 @@ const Register = () => {
               <label className="label text-[15px] font-semibold text-gray-700 mt-3">
                 Password
               </label>
-          <div className="relative"> 
+              <div className="relative">
                 <input
-                name="password"
-                type={showPassword ? "text" : "password"}
-                className="input input-bordered bg-white/70 border-purple-200 
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  className="input input-bordered bg-white/70 border-purple-200 
                                 focus:border-purple-500 focus:ring focus:ring-purple-200 w-full"
-                placeholder="Create Password"
-                required
-              />
+                  placeholder="Create Password"
+                  required
+                />
 
-              <span
+                <span
                   className="absolute right-3 top-3 cursor-pointer text-gray-600 text-xl"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
-          </div>
+              </div>
+
+              {passwordError && (
+                <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+              )}
 
               <button
                 type="submit"

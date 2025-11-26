@@ -58,10 +58,10 @@ const Login = () => {
   };
 
   return (
-    <div className="hero min-h-screen  px-4 my-10">
+    <div className="hero min-h-screen  px-4 my-9 md:my-12">
       <div className="p-6 md:p-10 bg-white/40 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/40 w-full max-w-md">
         <h1
-          className="text-4xl font-extrabold mb-6 
+          className="text-3xl md:text-4xl font-extrabold mb-3 md:mb-6 
                     bg-linear-to-r from-purple-600 to-pink-500 
                     text-transparent bg-clip-text text-center"
         >

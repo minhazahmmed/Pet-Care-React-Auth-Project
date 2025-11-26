@@ -3,7 +3,7 @@ import { FaPaw, FaPhoneAlt, FaEnvelope, FaFacebook, FaInstagram, FaYoutube } fro
 
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal bg-gradient-to-b from-pink-50 to-purple-100 text-base-content p-10 mt-16 rounded-t-3xl shadow-inner">
+    <footer className="footer sm:footer-horizontal bg-linear-to-b from-pink-50 to-purple-100 text-base-content p-10 shadow-inner">
       
       {/* Logo + About */}
       <aside>
