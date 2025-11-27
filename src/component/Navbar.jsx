@@ -9,6 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 const Navbar = () => {
   const { user } = useContext(AuthContext);
 
+
   const handleSignout = () => {
   signOut(auth)
     .then(() => {
@@ -23,12 +24,15 @@ const Navbar = () => {
     });
 };
 
+
+
+
   return (
     <div className=" bg-base-100 shadow-sm z-50 sticky top-0">
       <div className="navbar max-w-[1300px] mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -45,23 +49,29 @@ const Navbar = () => {
                 />{" "}
               </svg>
             </div>
-            <ul
+
+         
+               <ul
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100  z-1 mt-3  w-52 p-2 shadow"
+               onClick={() => document.activeElement.blur()} 
             >
               <li>
                 {" "}
-                <Link to={"/"}>Home</Link>{" "}
+                <Link to={"/"} >Home</Link>{" "}
               </li>
               <li>
                 {" "}
-                <Link to={"/services"}>Services</Link>{" "}
+                <Link to={"/services"} >Services</Link>{" "}
               </li>
               <li>
                 {" "}
-                <Link to={"/profile"}>My Profile</Link>{" "}
+                <Link to={"/profile"} >My Profile</Link>{" "}
               </li>
             </ul>
+      
+     
+
           </div>
 
           <Link
