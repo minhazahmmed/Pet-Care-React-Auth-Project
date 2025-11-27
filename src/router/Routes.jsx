@@ -9,11 +9,15 @@ import PrivateRoutes from "./PrivateRoutes";
 import ServiceDetails from "../pages/ServiceDetails";
 import ForgetPass from "../pages/ForgetPass";
 import Error from "../pages/Error";
+import ScrollToTop from "../component/ScrollToTop";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element:  <>
+        <ScrollToTop />
+        <RootLayout />
+      </>,
     errorElement: <Error/>,
     children: [
       {
